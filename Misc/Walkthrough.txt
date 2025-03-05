@@ -1,0 +1,17 @@
+A. Business Context & Ownership
+   1. Who owns the Data?
+   2. What Business Process it Supports?
+   3. System & Documentation 
+   4. Data Model & Data Catalog
+
+B. Architecture & Technological Stack
+   1. How is Data Stored? (SQL SERVER, AWS, Azure)
+   2. What are the integration capabilities? (Api, Kafka, File Extract)
+
+C. Extract & Load
+   1. incremental Load vs Full load?
+   2. Data Scope & Historical Needs
+   3. what is the expected size of all the extracts?
+   4. Are there any data volume limitatiosn?
+   5. How to avoid impacting the source system's performance?
+   6. authentication and authorization
