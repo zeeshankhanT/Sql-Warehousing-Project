@@ -1,0 +1,7 @@
+Bronze Layer:
+ 1. Raw Unprocessed Data
+ 2. Tables
+ 3. Full Load
+ 4. No Data Transformations
+ 5. NO Data Modelling 
+ 6. For Data Engineers
