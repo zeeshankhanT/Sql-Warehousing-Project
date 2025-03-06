@@ -1,0 +1,16 @@
+A. Analysing the data
+   - explore and understand the data
+
+B. Coding
+   
+   1. Data Cleaning
+      Check quality of bronze >> write data transformations >> Insert into Silver Layer
+   
+   2. Validating
+      - Data Correctness Checks
+   
+   3. Docs & Version
+      - Data Documenting
+      - Versioning in GIT
+      
+   
