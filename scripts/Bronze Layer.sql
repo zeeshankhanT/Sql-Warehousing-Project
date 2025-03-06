@@ -72,102 +72,112 @@ GO
 	
 CREATE OR ALTER PROCEDURE bronze.load_bronze as 
 BEGIN
-	PRINT '=============================================================='
-	PRINT 'lOADING BRONZE LAYER'
-	PRINT '=============================================================='
+	DECLARE @start_time DATETIME, @end_time DATETIME ,@batch_start_time DATETIME , @batch_end_time DATETIME
+	BEGIN TRY
+			SET @batch_start_time = GETDATE();
+			PRINT '=============================================================='
+			PRINT 'lOADING BRONZE LAYER'
+			PRINT '=============================================================='
 
-	PRINT '--------------------------------------------------------------'
-	PRINT 'LOADING CRM TABLES'
-	PRINT '--------------------------------------------------------------'
+			PRINT '--------------------------------------------------------------'
+			PRINT 'LOADING CRM TABLES'
+			PRINT '--------------------------------------------------------------'
 
-	PRINT '>> TRUNCATING TABLE bronze.crm_cust_info'
-	TRUNCATE TABLE bronze.crm_cust_info;
+			SET @start_time = GETDATE();
 
-	PRINT '>> INSERTING DATA INTO TABLE bronze.crm_cust_info'
-	BULK INSERT bronze.crm_cust_info
-	FROM 'D:\ALL REPORTS\1. Zeeshan\1. Youtube\sql Warehousing\Sql-Warehousing-Project\datasets\source_crm\cust_info.csv'
-	WITH (
-	 FIRSTROW = 2,
-	 FIELDTERMINATOR = ',',
-	 TABLOCK --LOCKS THE TABLE WHILE LOADING IT
-	);
+			PRINT '>> TRUNCATING TABLE bronze.crm_cust_info'
+			TRUNCATE TABLE bronze.crm_cust_info;
 
-	SELECT * FROM bronze.crm_cust_info;
-	SELECT count(*) FROM bronze.crm_cust_info;
+			PRINT '>> INSERTING DATA INTO TABLE bronze.crm_cust_info'
+			BULK INSERT bronze.crm_cust_info
+			FROM 'D:\ALL REPORTS\1. Zeeshan\1. Youtube\sql Warehousing\Sql-Warehousing-Project\datasets\source_crm\cust_info.csv'
+			WITH (
+			 FIRSTROW = 2,
+			 FIELDTERMINATOR = ',',
+			 TABLOCK --LOCKS THE TABLE WHILE LOADING IT
+			);
 
-	PRINT '>> TRUNCATING TABLE bronze.crm_prd_info'
-	TRUNCATE TABLE bronze.crm_prd_info;
+			PRINT '>> TRUNCATING TABLE bronze.crm_prd_info'
+			TRUNCATE TABLE bronze.crm_prd_info;
 
-	PRINT '>> INSERTING DATA INTO TABLE bronze.crm_prd_info'
-	BULK INSERT bronze.crm_prd_info
-	FROM 'D:\ALL REPORTS\1. Zeeshan\1. Youtube\sql Warehousing\Sql-Warehousing-Project\datasets\source_crm\prd_info.csv'
-	WITH (
-	 FIRSTROW = 2,
-	 FIELDTERMINATOR = ',',
-	 TABLOCK --LOCKS THE TABLE WHILE LOADING IT
-	);
+			PRINT '>> INSERTING DATA INTO TABLE bronze.crm_prd_info'
+			BULK INSERT bronze.crm_prd_info
+			FROM 'D:\ALL REPORTS\1. Zeeshan\1. Youtube\sql Warehousing\Sql-Warehousing-Project\datasets\source_crm\prd_info.csv'
+			WITH (
+			 FIRSTROW = 2,
+			 FIELDTERMINATOR = ',',
+			 TABLOCK --LOCKS THE TABLE WHILE LOADING IT
+			);
 
-	SELECT * FROM bronze.crm_prd_info;
-	SELECT count(*) FROM bronze.crm_prd_info;
-
-	PRINT '>> TRUNCATING TABLE bronze.crm_sales_details'
-	TRUNCATE TABLE bronze.crm_sales_details;
+			PRINT '>> TRUNCATING TABLE bronze.crm_sales_details'
+			TRUNCATE TABLE bronze.crm_sales_details;
 	
-	PRINT '>> INSERTING DATA INTO TABLE bronze.crm_sales_details'
-	BULK INSERT bronze.crm_sales_details
-	FROM 'D:\ALL REPORTS\1. Zeeshan\1. Youtube\sql Warehousing\Sql-Warehousing-Project\datasets\source_crm\sales_details.csv'
-	WITH (
-		FIRSTROW = 2,
-		FIELDTERMINATOR = ',',
-		TABLOCK
-	)
-
-	SELECT COUNT(*) FROM bronze.crm_sales_details;
+			PRINT '>> INSERTING DATA INTO TABLE bronze.crm_sales_details'
+			BULK INSERT bronze.crm_sales_details
+			FROM 'D:\ALL REPORTS\1. Zeeshan\1. Youtube\sql Warehousing\Sql-Warehousing-Project\datasets\source_crm\sales_details.csv'
+			WITH (
+				FIRSTROW = 2,
+				FIELDTERMINATOR = ',',
+				TABLOCK
+			)
 	
-	PRINT '--------------------------------------------------------------'
-	PRINT 'LOADING ERP TABLES'
-	PRINT '--------------------------------------------------------------'
+			PRINT '--------------------------------------------------------------'
+			PRINT 'LOADING ERP TABLES'
+			PRINT '--------------------------------------------------------------'
 
-	PRINT '>> TRUNCATING TABLE bronze.erp_cust_aZ12'
-	TRUNCATE TABLE bronze.erp_cust_aZ12;
+			PRINT '>> TRUNCATING TABLE bronze.erp_cust_aZ12'
+			TRUNCATE TABLE bronze.erp_cust_aZ12;
 
-	PRINT '>> INSERTING DATA INTO TABLE bronze.erp_cust_aZ12'
-	BULK INSERT bronze.erp_cust_aZ12
-	FROM 'D:\ALL REPORTS\1. Zeeshan\1. Youtube\sql Warehousing\Sql-Warehousing-Project\datasets\source_erp\CUST_AZ12.csv'
-	WITH (
-		FIRSTROW = 2,
-		FIELDTERMINATOR = ',',
-		TABLOCK
-	)
-
-	SELECT COUNT(*) FROM bronze.erp_cust_aZ12;
+			PRINT '>> INSERTING DATA INTO TABLE bronze.erp_cust_aZ12'
+			BULK INSERT bronze.erp_cust_aZ12
+			FROM 'D:\ALL REPORTS\1. Zeeshan\1. Youtube\sql Warehousing\Sql-Warehousing-Project\datasets\source_erp\CUST_AZ12.csv'
+			WITH (
+				FIRSTROW = 2,
+				FIELDTERMINATOR = ',',
+				TABLOCK
+			)
 	
-	PRINT '>> TRUNCATING TABLE bronze.erp_loc_a101'
-	TRUNCATE TABLE bronze.erp_loc_a101;
-	PRINT '>> INSERTING DATA INTO TABLE bronze.erp_loc_a101'
-	BULK INSERT bronze.erp_loc_a101
-	FROM 'D:\ALL REPORTS\1. Zeeshan\1. Youtube\sql Warehousing\Sql-Warehousing-Project\datasets\source_erp\LOC_A101.csv'
-	WITH (
-		FIRSTROW = 2,
-		FIELDTERMINATOR = ',',
-		TABLOCK
-	)
+			PRINT '>> TRUNCATING TABLE bronze.erp_loc_a101'
+			TRUNCATE TABLE bronze.erp_loc_a101;
+			PRINT '>> INSERTING DATA INTO TABLE bronze.erp_loc_a101'
+			BULK INSERT bronze.erp_loc_a101
+			FROM 'D:\ALL REPORTS\1. Zeeshan\1. Youtube\sql Warehousing\Sql-Warehousing-Project\datasets\source_erp\LOC_A101.csv'
+			WITH (
+				FIRSTROW = 2,
+				FIELDTERMINATOR = ',',
+				TABLOCK
+			)
 
-	SELECT COUNT(*) FROM bronze.erp_loc_a101;
 
-	PRINT '>> TRUNCATING TABLE bronze.erp_px_cat_g1v2'
-	TRUNCATE TABLE bronze.erp_px_cat_g1v2;
-	PRINT '>> INSERTING DATA INTO TABLE bronze.erp_px_cat_g1v2'
-	BULK INSERT bronze.erp_px_cat_g1v2
-	FROM 'D:\ALL REPORTS\1. Zeeshan\1. Youtube\sql Warehousing\Sql-Warehousing-Project\datasets\source_erp\PX_CAT_G1V2.csv'
-	WITH (
-		FIRSTROW = 2,
-		FIELDTERMINATOR = ',',
-		TABLOCK
-	)
+			PRINT '>> TRUNCATING TABLE bronze.erp_px_cat_g1v2'
+			TRUNCATE TABLE bronze.erp_px_cat_g1v2;
+			PRINT '>> INSERTING DATA INTO TABLE bronze.erp_px_cat_g1v2'
+			BULK INSERT bronze.erp_px_cat_g1v2
+			FROM 'D:\ALL REPORTS\1. Zeeshan\1. Youtube\sql Warehousing\Sql-Warehousing-Project\datasets\source_erp\PX_CAT_G1V2.csv'
+			WITH (
+				FIRSTROW = 2,
+				FIELDTERMINATOR = ',',
+				TABLOCK
+			)
+			SET @end_time = GETDATE();
+			PRINT '>> LOAD DURATION: '+ CAST(DATEDIFF(second,@start_time, @end_time) AS NVARCHAR) + ' SECONDS';
+			
+			SET @batch_end_time = GETDATE();
+			PRINT '========================================================='
+			PRINT '>> TOTAL LOAD DURATION: '+ CAST(DATEDIFF(second,@batch_start_time, @batch_end_time) AS NVARCHAR) + ' SECONDS';
+			PRINT '========================================================='
+	END TRY
+	BEGIN CATCH
 
-	SELECT COUNT(*) FROM bronze.erp_px_cat_g1v2;
+			PRINT '========================================================='
+			PRINT 'ERROR OCCURED DURING LOADING BRONZE LAYER'
+			PRINT 'ERROR MESSAGE' + ERROR_MESSAGE();
+			PRINT 'ERROR MESSAGE' + CAST(ERROR_NUMBER() AS NVARCHAR);
+			PRINT 'ERROR MESSAGE' + CAST(ERROR_STATE() AS NVARCHAR);		
+			PRINT '========================================================='
+
+	END CATCH
 
 END
-_______________________________________________________
+
 EXECUTE bronze.load_bronze;
