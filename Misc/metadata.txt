@@ -1,0 +1,9 @@
+MetaData Columns
+- Extra columns added by data engineers that do not originate from the source data.
+
+Eg:
+1. create_date : The record's load Timestamp.
+2. update_date : The record's last update Timestamp.
+3. source_sy : The origin system of the record.
+4. file_location : the file source of the record.
+
