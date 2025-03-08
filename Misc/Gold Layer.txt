@@ -1,0 +1,16 @@
+1. Analysing 
+  Explore & Understand the Business Objectives
+2. Coding
+  Data Integeration
+    a. Build the business Object
+    b. Dimension VS Fact
+    c. Rename to Friendly Names
+3. Validating
+  Data Integeration Checks
+4. Documentation & Version
+
+Data Modeling
+a. Conceptual Data Model (Big Picture)
+b. Logical Data Model (BLue Print)
+c. Physical Data Model (IMplementation)
+     
